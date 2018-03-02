@@ -1,1 +1,3 @@
 class Spade{}
+
+class Diamond{}
