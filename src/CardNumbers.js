@@ -2,7 +2,6 @@ class Ace {}
 class King {}
 class Queen {}
 class Jack {}
-class One {}
 class Two {}
 class Three {}
 class Four {}

@@ -1,5 +1,5 @@
 describe("Card Numbers", () => {
-  var ace,king,queen,jack, one, two, three, four, five, six, seven, eight, nine, ten;
+  var ace,king,queen,jack, two, three, four, five, six, seven, eight, nine, ten;
 
   it("should be an Ace", () => {
     ace = new Ace();
@@ -23,12 +23,6 @@ describe("Card Numbers", () => {
     jack = new Jack();
 
     expect(jack.constructor).toBe(Jack);
-  });
-
-  it("should be an One", () => {
-    one = new One();
-
-    expect(one.constructor).toBe(One);
   });
 
   it("should be an Two", () => {
