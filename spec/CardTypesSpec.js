@@ -1,10 +1,12 @@
 describe("Card Types", () => {
   var spade;
   var diamond;
+  var hearts;
 
   beforeEach(() => {
     spade = new Spade();
     diamond = new Diamond();
+    hearts = new Hearts();
   });
 
   it("should be a Spade", () => {
@@ -15,6 +17,8 @@ describe("Card Types", () => {
     expect(diamond.constructor).toBe(Diamond);
   });
 
-  
+  it("should be a Hearts", () => {
+    expect(hearts.constructor).toBe(Hearts);
+  });
 
 });
