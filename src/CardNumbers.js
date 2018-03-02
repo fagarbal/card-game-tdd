@@ -2,3 +2,13 @@ class Ace {}
 class King {}
 class Queen {}
 class Jack {}
+class One {}
+class Two {}
+class Three {}
+class Four {}
+class Five {}
+class Six {}
+class Seven {}
+class Eight {}
+class Nine {}
+class Ten {}
