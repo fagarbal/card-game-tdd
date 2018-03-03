@@ -1,13 +1,14 @@
 describe("Card", () => {
-  var card;
+	let card;
 
-  beforeEach(() => {
-    var spade = new Spade();
-    var ace = new Ace();
-    card = new Card(spade, ace);
-  });
+	beforeEach(() => {
+		const spade = new Spade();
+		const ace = new Ace();
 
-  it("should be a Card", () => {
-    expect(card.constructor).toBe(Card);
-  });
+		card = new Card(spade, ace);
+	});
+
+	it("should be a Card", () => {
+		expect(card.constructor).toBe(Card);
+	});
 });

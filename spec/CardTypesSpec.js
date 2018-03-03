@@ -1,31 +1,30 @@
 describe("Card Types", () => {
-  var spade;
-  var diamond;
-  var hearts;
-  var clubs;
+	let spade;
+	let diamond;
+	let hearts;
+	let clubs;
 
-  it("should be a Spade", () => {
-    spade = new Spade();
+	it("should be a Spade", () => {
+		spade = new Spade();
 
-    expect(spade.constructor).toBe(Spade);
-  });
+		expect(spade.constructor).toBe(Spade);
+	});
 
-  it("should be a Diamond", () => {
-    diamond = new Diamond();
+	it("should be a Diamond", () => {
+		diamond = new Diamond();
 
-    expect(diamond.constructor).toBe(Diamond);
-  });
+		expect(diamond.constructor).toBe(Diamond);
+	});
 
-  it("should be a Hearts", () => {
-    hearts = new Hearts();
+	it("should be a Heart", () => {
+		hearts = new Heart();
 
-    expect(hearts.constructor).toBe(Hearts);
-  });
+		expect(hearts.constructor).toBe(Heart);
+	});
 
-  it("should be a Clubs", () => {
-    clubs = new Clubs();
+	it("should be a Club", () => {
+		clubs = new Club();
 
-    expect(clubs.constructor).toBe(Clubs);
-  });
-
+		expect(clubs.constructor).toBe(Club);
+	});
 });

@@ -1,7 +1,4 @@
-class Spade{}
-
-class Diamond{}
-
-class Hearts{}
-
-class Clubs{}
+class Spade {}
+class Diamond {}
+class Heart {}
+class Club {}
