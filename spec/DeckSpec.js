@@ -40,6 +40,8 @@ describe("Deck", () => {
 	});
 
 	it("should shuffle the card order", () => {
+		expect(deck.cards).toEqual(cards);
+
 		deck.shuffle();
 
 		expect(deck.cards).not.toEqual(cards);
