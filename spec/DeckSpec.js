@@ -2,38 +2,26 @@ describe("Deck", () => {
 	let deck, cards, otherCards;
 
 	beforeEach(() => {
-
-		const spade = new Spade();
-		const clubs = new Club();
-		const diamond = new Diamond();
-		const hearts = new Heart();
-
-
-		const ace = new Ace();
-		const king = new King();
-		const three = new Three();
-		const two = new Two();
-
 		cards = [
-			new Card(spade, ace),
-			new Card(spade, king),
-			new Card(spade, three),
-			new Card(clubs, ace),
-			new Card(clubs, king),
-			new Card(clubs, three),
-			new Card(diamond, ace),
-			new Card(diamond, king),
-			new Card(diamond, three),
-			new Card(hearts, ace),
-			new Card(hearts, king),
-			new Card(hearts, three)
+			new Card(SPADE, ACE),
+			new Card(SPADE, KING),
+			new Card(SPADE, THREE),
+			new Card(CLUB, ACE),
+			new Card(CLUB, KING),
+			new Card(CLUB, THREE),
+			new Card(DIAMOND, ACE),
+			new Card(DIAMOND, KING),
+			new Card(DIAMOND, THREE),
+			new Card(HEART, ACE),
+			new Card(HEART, KING),
+			new Card(HEART, THREE)
 		];
 
 		otherCards = [
-			new Card(spade, two),
-			new Card(clubs, two),
-			new Card(diamond, two),
-			new Card(hearts, two)
+			new Card(SPADE, TWO),
+			new Card(CLUB, TWO),
+			new Card(DIAMOND, TWO),
+			new Card(HEART, TWO)
 		];
 
 		deck = new Deck(cards);
@@ -78,6 +66,7 @@ describe("Deck", () => {
 		expect(deck.getCards().length).toEqual(12);
 
 		deck.addCards(otherCards);
+
 		expect(deck.getCards().length).toEqual(16);
 	});
 });

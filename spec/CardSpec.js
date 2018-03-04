@@ -1,12 +1,10 @@
 describe("Card", () => {
-	let card, spade, ace, image;
+	let card, image;
 
 	beforeEach(() => {
-		spade = new Spade();
-		ace = new Ace();
 		image = new String();
 
-		card = new Card(spade, ace, image);
+		card = new Card(SPADE, ACE, image);
 	});
 
 	it("should be a Card", () => {
@@ -14,11 +12,11 @@ describe("Card", () => {
 	});
 
 	it("should have Type", () => {
-		expect(card.getType()).toEqual(spade);
+		expect(card.getType()).toEqual(SPADE);
 	});
 
 	it("should have Number", () => {
-		expect(card.getNumber()).toEqual(ace);
+		expect(card.getNumber()).toEqual(ACE);
 	});
 
 	it("should have Image", () => {

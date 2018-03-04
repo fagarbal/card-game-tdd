@@ -1,16 +1,8 @@
 describe("Card Types Order", () => {
-	let spade, diamond, hearts, clubs;
 	let cardTypesOrder;
 
 	beforeEach(() => {
-		spade = new Spade();
-		clubs = new Club();
-		diamond = new Diamond();
-		hearts = new Heart();
-
-		const typeOrder = [spade, clubs, diamond, hearts];
-
-		cardTypesOrder = new CardTypesOrder(typeOrder);
+		cardTypesOrder = new CardTypesOrder(TYPE_ORDER);
 	});
 
 	it("should have greaterOf function", () => {   
@@ -18,10 +10,10 @@ describe("Card Types Order", () => {
 	});
 
 	it("should return the greater of two card types", () => {   
-		expect(cardTypesOrder.greaterOf(spade, clubs).constructor).toBe(Spade);
-		expect(cardTypesOrder.greaterOf(clubs, spade).constructor).toBe(Spade);
-		expect(cardTypesOrder.greaterOf(diamond, clubs).constructor).toBe(Club);
-		expect(cardTypesOrder.greaterOf(diamond, hearts).constructor).toBe(Diamond);
-		expect(cardTypesOrder.greaterOf(hearts, spade).constructor).toBe(Spade);
+		expect(cardTypesOrder.greaterOf(SPADE, CLUB)).toEqual(SPADE);
+		expect(cardTypesOrder.greaterOf(CLUB, SPADE)).toEqual(SPADE);
+		expect(cardTypesOrder.greaterOf(DIAMOND, CLUB)).toEqual(CLUB);
+		expect(cardTypesOrder.greaterOf(DIAMOND, HEART)).toEqual(DIAMOND);
+		expect(cardTypesOrder.greaterOf(HEART, SPADE)).toEqual(SPADE);
 	});
 });

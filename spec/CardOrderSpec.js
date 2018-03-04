@@ -3,27 +3,14 @@ describe("Card", () => {
 	let card1, card2, card3, card4;
 
 	beforeEach(() => {
-		const spade = new Spade();
-		const clubs = new Club();
-		const diamond = new Diamond();
-		const hearts = new Heart();
+		card1 = new Card(SPADE, ACE);
+		card2 = new Card(SPADE, KING);
+		card3 = new Card(DIAMOND, KING);
+		card4 = new Card(CLUB, THREE);
 
-		const ace = new Ace();
-		const king = new King();
-		const three = new Three();
+		cardTypesOrder = new CardTypesOrder(TYPE_ORDER);
 
-		card1 = new Card(spade, ace);
-		card2 = new Card(spade, king);
-
-		card3 = new Card(diamond, king);
-		card4 = new Card(clubs, three);
-
-		const typeOrder = [spade, clubs, diamond, hearts];
-		const numbersOrder = [ace, king, three];
-
-		cardTypesOrder = new CardTypesOrder(typeOrder);
-
-		cardNumbersOrder = new CardNumbersOrder(numbersOrder);
+		cardNumbersOrder = new CardNumbersOrder(NUMBER_ORDER);
 
 		cardOrder = new CardOrder(cardTypesOrder, cardNumbersOrder);
 	});
