@@ -4,14 +4,14 @@ class CardOrder {
 		this.cardNumbersOrder = cardNumbersOrder;
 	}
 
-	greaterOf(cardA, cardB){
-		const orderNumber = this.cardNumbersOrder.greaterOf(cardA.number, cardB.number);
-		const orderType = this.cardTypesOrder.greaterOf(cardA.type, cardB.type);
+	greaterOf(cardA, cardB) {
+		const orderNumber = this.cardNumbersOrder.greaterOf(cardA.getNumber(), cardB.getNumber());
+		const orderType = this.cardTypesOrder.greaterOf(cardA.getType(), cardB.getType());
 
-		if (orderNumber === cardA.number && orderNumber === cardB.number) {
-			return orderType === cardA.type ? cardA : cardB;
+		if (orderNumber === cardA.getNumber() && orderNumber === cardB.getNumber()) {
+			return orderType === cardA.getType() ? cardA : cardB;
 		}
 
-		return orderNumber === cardA.number ? cardA : cardB;
+		return orderNumber === cardA.getNumber() ? cardA : cardB;
 	}
 }

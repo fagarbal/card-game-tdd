@@ -1,6 +1,6 @@
 describe("Card", () => {
 	let cardOrder;
-	let card1,card2,card3,card4;
+	let card1, card2, card3, card4;
 
 	beforeEach(() => {
 		const spade = new Spade();
@@ -39,5 +39,4 @@ describe("Card", () => {
 		expect(cardOrder.greaterOf(card3, card4)).toBe(card3);
 		expect(cardOrder.greaterOf(card2, card1)).toBe(card1);
 	});
-
 });

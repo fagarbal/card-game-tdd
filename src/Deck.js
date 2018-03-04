@@ -3,8 +3,16 @@ class Deck {
 		this.cards = cards.slice();
 	}
 
-	getCards(num) {
-		return this.cards.splice(0, num);
+	getCards() {
+		return this.cards;
+	} 
+
+	getCard() {
+		return this.cards.shift();
+	}
+
+	addCards(cards) {
+		this.cards = this.cards.concat(cards);
 	}
 
 	shuffle() {

@@ -1,8 +1,5 @@
 describe("Card Types", () => {
-	let spade;
-	let diamond;
-	let hearts;
-	let clubs;
+	let spade, diamond, hearts, clubs;
 
 	it("should be a Spade", () => {
 		spade = new Spade();

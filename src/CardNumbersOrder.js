@@ -3,7 +3,7 @@ class CardNumbersOrder {
 		this.numberOrder = numberOrder;
 	}
 
-	greaterOf(typeA, typeB){
+	greaterOf(typeA, typeB) {
 		const orderA = this.numberOrder.indexOf(typeA);
 		const orderB = this.numberOrder.indexOf(typeB);
 

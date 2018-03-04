@@ -78,5 +78,4 @@ describe("Card Numbers", () => {
 
 		expect(ten.constructor).toBe(Ten);
 	});
-
 });
