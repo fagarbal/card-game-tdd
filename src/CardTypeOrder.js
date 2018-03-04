@@ -1,4 +1,4 @@
-class CardTypesOrder {
+class CardTypeOrder {
 	constructor(typeOrder) {
 		this.typeOrder = typeOrder;
 	}

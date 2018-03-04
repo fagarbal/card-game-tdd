@@ -1,5 +1,9 @@
 class Player {
-	constructor(deck) {
+	constructor(deck = new Deck()) {
+		this.deck = deck;
+	} 
+
+	setDeck(deck) {
 		this.deck = deck;
 	}
 
@@ -8,7 +12,7 @@ class Player {
 	}
 
 	faceUpCard() {
-		return this.deck.getCard();
+		return this.deck.drawCard();
 	}
 
 	addCards(cards) {

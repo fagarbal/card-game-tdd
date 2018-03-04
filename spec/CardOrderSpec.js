@@ -1,4 +1,4 @@
-describe("Card", () => {
+describe("Card Order", () => {
 	let cardOrder;
 	let card1, card2, card3, card4;
 
@@ -8,11 +8,11 @@ describe("Card", () => {
 		card3 = new Card(DIAMOND, KING);
 		card4 = new Card(CLUB, THREE);
 
-		cardTypesOrder = new CardTypesOrder(TYPE_ORDER);
+		const cardTypeOrder = new CardTypeOrder(TYPE_ORDER);
 
-		cardNumbersOrder = new CardNumbersOrder(NUMBER_ORDER);
+		const cardNumberOrder = new CardNumberOrder(NUMBER_ORDER);
 
-		cardOrder = new CardOrder(cardTypesOrder, cardNumbersOrder);
+		cardOrder = new CardOrder(cardTypeOrder, cardNumberOrder);
 	});
 
 	it("should be a Card", () => {

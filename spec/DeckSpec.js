@@ -40,21 +40,37 @@ describe("Deck", () => {
 	});
 
 	it("should shuffle the card order", () => {
-		expect(deck.cards).toEqual(cards);
+		expect(deck.getCards()).toEqual(cards);
 
 		deck.shuffle();
 
-		expect(deck.cards).not.toEqual(cards);
+		expect(deck.getCards()).not.toEqual(cards);
+	});
+
+	it("should have reset method", () => {
+		expect(deck.reset).toBeDefined();
+	});
+
+	it("should reset the cards", () => {
+		expect(deck.getCards()).toEqual(cards);
+
+		deck.drawCard();
+
+		expect(deck.getCards()).not.toEqual(cards);
+
+		deck.reset();
+
+		expect(deck.getCards()).toEqual(cards);
 	});
 
 	it("should have getCard method", () => {
-		expect(deck.getCard).toBeDefined();
+		expect(deck.drawCard).toBeDefined();
 	});
 
 	it("should getCard return card", () => {
 		expect(deck.getCards().length).toEqual(12);
 
-		const playerCard = deck.getCard();
+		const playerCard = deck.drawCard();
 
 		expect(playerCard.constructor).toBe(Card);
 		expect(deck.getCards().length).toEqual(11);

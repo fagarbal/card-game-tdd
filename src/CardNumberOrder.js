@@ -1,4 +1,4 @@
-class CardNumbersOrder {
+class CardNumberOrder {
 	constructor(numberOrder) {
 		this.numberOrder = numberOrder;
 	}
