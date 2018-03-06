@@ -21,12 +21,11 @@ class Deck {
 	} 
 
 	drawCard() {
-		return this.cards.shift();
+		return this.cards.pop();
 	}
 
 	addCards(cards) {
-		this.cards = this.cards.concat(cards);
-		this.initialCards = this.cards.slice();
+		this.cards = [].concat(cards, this.cards);
 	}
 
 	shuffle() {

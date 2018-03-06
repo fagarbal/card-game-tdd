@@ -36,42 +36,58 @@ class Game {
 		if (cardsLeft.length) this.drawCards();
 	}
 
-	roundResult() {
-		const cards = [];
-
-		const players = this.players.filter((player) => player.getDeck().getCards().length).slice();
-
-		if (!players.length) return;
-
-		const firstPlayer = players.shift();		
-		const firstCard = firstPlayer.faceUpCard();
-
-		cards.push(firstCard);
-
-		const looser = players.reduce((prevCard, nextPlayer) => {
-			const nextCard = nextPlayer.faceUpCard();
-
-			cards.push(nextCard);
-
-			return this.cardOrder.greaterOf(prevCard, nextCard);
-		}, firstCard);
-
-		return {
-			looser, cards
-		};
+	getPlayersWithCards(players) {
+		return players.filter((player) => player.getDeck().getCards().length).slice();
 	}
 
-	nextRound() {
-		const roundResult = this.roundResult();
-		if (!roundResult) return;
+	getNextPlayer(recover) {
+		if (!this.currentPlayers) this.currentPlayers = this.getPlayersWithCards(this.players);
+		
+		this.currentPlayers = this.getPlayersWithCards(this.currentPlayers);
 
-		const looserCard = roundResult.looser;
-		const allCards = roundResult.cards;
+		const next = this.currentPlayers.shift();
 
-		const players = this.players.filter((player) => player.getDeck().getCards().length);
+		if (next) {
+			if (recover) this.currentPlayers.unshift(next);
+			return next;
+		}
 
-		const looserPlayer = players.find((player) => player.getDeck().findCard(looserCard));
-		if (!looserPlayer) return;
-		looserPlayer.addCards(allCards);
+		this.currentPlayers = this.currentPlayers.concat(this.getPlayersWithCards(this.players));
+
+		return this.getNextPlayer(recover);
 	}
+
+	playRound() {
+
+		const playerA = this.getNextPlayer();
+		const playerB = this.getNextPlayer({});
+
+		const cardA = playerA.faceUpCard();
+		const cardB = playerB.faceUpCard();
+
+		const winnerCard = this.cardOrder.greaterOf(cardA, cardB);
+
+		const winnerPlayer = winnerCard === cardA ? playerA : playerB;
+
+		winnerPlayer.addCards([cardA, cardB]);
+	}
+}
+
+const game = new Game();
+
+game.addPlayer();
+game.addPlayer(); 
+game.addPlayer(); 
+game.addPlayer(); 
+
+game.initGame();
+
+for (var i = 0; i <= 1500; i++) {
+	console.log("ROUND ", i)
+	console.log(game.players[0].deck)
+	console.log(game.players[1].deck)
+	console.log(game.players[2].deck)
+	console.log(game.players[3].deck)
+
+	game.playRound();
 }
