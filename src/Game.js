@@ -7,28 +7,35 @@ class Game {
 		this.cardOrder = new CardOrder(typeOrder, numberOrder);
 
 		this.players = [];
+
+		this.events = {
+			WINNER: class Winner {},
+			LOOSER: class Looser {}
+		};
 	}
 
-	addPlayer() {
+	addPlayer(name) {
 		const player = new Player();
+
+		player.setName(name);
 
 		this.players.push(player);
 	}
 
-	initGame() {
+	setupGame() {
 		this.deck.reset();
 		this.deck.shuffle();
 
 		this.drawCards();
+
+		this.currentPlayers = this.players.slice();
 	}
 
 	drawCards() {
 		this.players.forEach((player) => {
 			const card = this.deck.drawCard();
 
-			if (!card) return;
-
-			player.addCards(card);
+			if (card) player.addCards(card);
 		});
 		
 		const cardsLeft = this.deck.getCards();
@@ -36,31 +43,37 @@ class Game {
 		if (cardsLeft.length) this.drawCards();
 	}
 
-	getPlayersWithCards(players) {
-		return players.filter((player) => player.getDeck().getCards().length).slice();
+	getActivePlayers() {
+		return this.currentPlayers.filter((player) => player.getDeck().getCards().length);
 	}
 
-	getNextPlayer(recover) {
-		if (!this.currentPlayers) this.currentPlayers = this.getPlayersWithCards(this.players);
-		
-		this.currentPlayers = this.getPlayersWithCards(this.currentPlayers);
-
-		const next = this.currentPlayers.shift();
-
-		if (next) {
-			if (recover) this.currentPlayers.unshift(next);
-			return next;
-		}
-
-		this.currentPlayers = this.currentPlayers.concat(this.getPlayersWithCards(this.players));
-
-		return this.getNextPlayer(recover);
+	getLooserPlayer(currentPlayers) {
+		return this.currentPlayers.filter((playerA) => !currentPlayers.find((playerB) => playerB.name === playerA.name)).find((player) => player);
 	}
+
+	getNextPlayers() {
+		const currentPlayers = this.getActivePlayers();
+		const looserPlayer = this.getLooserPlayer(currentPlayers);
+
+		if (looserPlayer) this._onEvent(this.events.LOOSER.name, looserPlayer);
+
+		this.currentPlayers = currentPlayers;
+
+		const playerA = this.currentPlayers.shift();
+		const playerB = this.currentPlayers.shift();
+
+		if (!playerB) return [playerA];
+
+		this.currentPlayers.unshift(playerB);
+		this.currentPlayers.push(playerA);
+
+		return [playerA, playerB];
+	} 
 
 	playRound() {
+		const [playerA, playerB] = this.getNextPlayers();
 
-		const playerA = this.getNextPlayer();
-		const playerB = this.getNextPlayer({});
+		if (!playerB) return playerA; 
 
 		const cardA = playerA.faceUpCard();
 		const cardB = playerB.faceUpCard();
@@ -69,25 +82,21 @@ class Game {
 
 		const winnerPlayer = winnerCard === cardA ? playerA : playerB;
 
+
 		winnerPlayer.addCards([cardA, cardB]);
 	}
-}
 
-const game = new Game();
+	play(callbackRound) {
+		const winner = this.playRound();
 
-game.addPlayer();
-game.addPlayer(); 
-game.addPlayer(); 
-game.addPlayer(); 
+		if (winner) return this._onEvent(this.events.WINNER.name, winner);
+		
+		if (callbackRound) callbackRound();
 
-game.initGame();
+		return this.play(callbackRound);
+	}
 
-for (var i = 0; i <= 1500; i++) {
-	console.log("ROUND ", i)
-	console.log(game.players[0].deck)
-	console.log(game.players[1].deck)
-	console.log(game.players[2].deck)
-	console.log(game.players[3].deck)
-
-	game.playRound();
+	onEvent(eventCallback) {
+		this._onEvent = eventCallback;
+	}
 }

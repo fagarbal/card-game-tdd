@@ -1,7 +1,16 @@
 class Player {
-	constructor(deck = new Deck()) {
-		this.deck = deck;
-	} 
+	constructor(name) {
+		this.deck = new Deck();
+		this.name = name || Player.name;
+	}
+
+	setName(name) {
+		this.name = name;
+	}
+
+	getName(name) {
+		return this.name;
+	}
 
 	setDeck(deck) {
 		this.deck = deck;
